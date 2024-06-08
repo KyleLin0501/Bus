@@ -1,0 +1,46 @@
+ {% load static %}
+ <!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公路大眾運輸資訊系統</title>
+    <link rel="stylesheet"  href="../static/css/style.css">
+</head>
+<body>
+{% load static %}
+<section class="index">
+    <div>
+        <h1 class="title-style">公路大眾運輸資訊系統</h1>
+    </div>
+    <div class="div-style">
+         <form action="{% url 'search' %}" method="get">
+            <button type="submit">
+                <h2>民眾查詢</h2>
+                <img src="{% static 'image/search.png' %}" alt="booking" height="150">
+            </button>
+        </form>
+        <form action="{% url 'login' %}" method="get">
+            <button type="submit">
+                <h2>民眾預約</h2>
+                <img src="{% static 'image/booking.png' %}" alt="booking" height="150">
+            </button>
+        </form>
+    </div>
+    <div class="div-style">
+        <form action="{% url 'lover' %}" method="get">
+            <button type="submit">
+                <h2>公車迷</h2>
+                <img src="{% static 'image/driver.png' %}" alt="driver" height="150">
+            </button>
+        </form>
+        <form action="{% url 'systemLogin' %}" method="get">
+            <button type="submit">
+                <h2>系統管理員</h2>
+                <img src="{% static 'image/system.png' %}" alt="system" height="150">
+            </button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

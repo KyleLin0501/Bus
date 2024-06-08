@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登入/註冊</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="login">
+    
+    
+    <section class="login">
+        <h1>乘客登入/註冊</h1>
+        <button onclick="location.href='{% url 'index' %}'" class="back">返回首頁</button>
+        <div class="container">
+            <div class="form-section" style="float: left">
+                <h2>登入</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <label for="login-phone">電話:</label>
+                    <input type="text" id="login-phone" name="login-phone">
+                    <label for="login-uid">乘客UID:</label>
+                    <input type="text" id="login-uid" name="login-uid">
+                    <input type="submit" value="登入" class="submit">
+                </form>
+            </div>
+            <div class="form-section" style="float: right">
+                <h2>註冊</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <label for="register-uid">乘客UID:</label>
+                    <input type="text" id="register-uid" name="register-uid">
+                    <label for="register-name">姓名:</label>
+                    <input type="text" id="register-name" name="register-name">
+                    <label for="register-gender">性別:</label>
+                    <input type="text" id="register-gender" name="register-gender">
+                    <label for="register-phone">聯絡電話:</label>
+                    <input type="text" id="register-phone" name="register-phone">
+                    <label for="register-email">信箱:</label>
+                    <input type="text" id="register-email" name="register-email">
+                    <label for="register-disability">身心障礙類別:</label>
+                    <input type="text" id="register-disability" name="register-disability">
+                    <input type="submit" value="註冊">
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
