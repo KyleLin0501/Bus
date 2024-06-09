@@ -277,6 +277,7 @@ section .index {
     overflow: hidden;
     margin-top: 50px;
 }
+
 .system .navbar a {
     float: left;
     display: block;
@@ -302,6 +303,12 @@ section .index {
 }
 
 
+.system div .table-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .system th {
     border: 1px solid black;
     padding: 5px;
@@ -318,6 +325,13 @@ section .index {
 {
     text-align: center;
     vertical-align: middle;
+}
+
+.system div  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .system .div-table {
@@ -339,4 +353,71 @@ section .index {
     padding: 5px;
     margin: 10px;
     background-color: #f8f8f8;
+}
+
+.system .submit {
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #008CBA;
+    color: white;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.system .submit:hover {
+    background-color: #007B9A;
+}
+
+.system .submit {
+    background-color: #4CAF50;
+}
+
+
+.booking  h1{
+    text-align: center;
+    top: 10px;
+    font-size: 30px;
+}
+
+.booking {
+    background-color: #f0f0f0;
+}
+
+.booking .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.booking .left {
+    flex: 1;
+    margin-left: 300px;
+}
+.booking .right {
+    flex: 1;
+    margin-right: 300px;
+}
+
+.booking .submit {
+    background-color: #4CAF50;
+}
+
+.booking .reset {
+    background-color: #f44336;
+}
+.booking .submit,
+.booking .reset {
+    padding: 10px 80px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.booking .submit:hover,
+.booking .reset:hover {
+    background-color: #007B9A;
 }

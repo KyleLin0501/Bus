@@ -12,7 +12,6 @@
             }
             document.getElementById(id).style.display = 'table';
         }
-        /* JavaScript */
         function makeActive(id) {
             var navbarItems = document.getElementsByClassName('navbar-item');
             for (var i = 0; i < navbarItems.length; i++) {
@@ -23,19 +22,29 @@
     </script>
 </head>
 <body class="system">
-    <h1>公車迷查詢</h1>
+    <h1>系統管理員</h1>
     <button onclick="location.href='{% url 'index' %}'" class="back">返回首頁</button>
     <section class="">
         <div class="navbar">
             <a id="nav-vehicles" class="navbar-item" href="#1" onclick="showTable('manage-vehicles'); makeActive('nav-vehicles')">管理車輛</a>
             <a id="nav-drivers" class="navbar-item" href="#2" onclick="showTable('manage-drivers'); makeActive('nav-drivers')">管理駕駛</a>
-            <a id="passenger-booking" class="navbar-item" href="#3" onclick="showTable('passenger-booking'); makeActive('passenger-booking')">管理預約</a>
-            <a id="maintenance-record" class="navbar-item" href="#4" onclick="showTable('maintenance-record'); makeActive('maintenance-record')">修改紀錄</a>
+            <a id="nav-passenger" class="navbar-item" href="#3" onclick="showTable('passenger-booking'); makeActive('nav-passenger')">管理預約</a>
+            <a id="nav-maintenance" class="navbar-item" href="#4" onclick="showTable('maintenance-record'); makeActive('nav-maintenance')">修改紀錄</a>
         </div>
-           <div id="manage-vehicles" class="table" style="display: none;">
-               <input type="submit" value="查詢" class="submit">
-               <input type="reset" value="清除" id="reset" class="reset" onclick="location.href='./#1'">
-               <table class="div-table">
+        <div id="manage-vehicles" class="table" style="display: none;">
+            <div>
+                <select name="route_number">
+                    <option value="">請選擇日期</option>
+                </select>
+                <select name="route_number">
+                    <option value="">請選擇路線</option>
+                </select>
+                <select name="route_number">
+                    <option value="">請選擇發車時間</option>
+                </select>
+                <input type="submit" value="查詢" class="submit">
+            </div>
+            <table class="div-table table-style">
                 <tr>
                     <th>日期</th>
                     <th>路線</th>
@@ -44,58 +53,76 @@
                     <th>司機姓名</th>
                     <th>維護日期</th>
                     <th>保養廠</th>
+                    <th>保養等級</th>
+                    <th>保養等級</th>
+                    <th>保養人員</th>
                 </tr>
-                
             </table>
-           </div>
-            <div id="manage-drivers"  class="table" style="display: none;">
-                <table id="manage-drivers" class="div-table">
-                    <tr>
-                        <th>日期</th>
-                        <th>路線</th>
-                        <th>發車時間</th>
-                        <th>車牌</th>
-                        <th>司機姓名</th>
-                        <th>身分證字號</th>
-                        <th>生日</th>
-                        <th>性別</th>
-                        <th>違規次數</th>
-                        <th>駕照類別</th>
-                        <th>駕照有效期限</th>
-                    </tr>
-                </table>
+        </div>
+        <div id="manage-drivers"  class="table" style="display: none;">
+            <div>
+                <select name="route_number">
+                    <option value="">請選擇日期</option>
+                </select>
+                <select name="route_number">
+                    <option value="">請選擇路線</option>
+                </select>
+                <select name="route_number">
+                    <option value="">請選擇發車時間</option>
+                </select>
+                <input type="submit" value="查詢" class="submit">
             </div>
-            <div id="passenger-booking"  class="table" style="display: none;">
-                <table class="div-table">
-                   <tr>
-                        <th>預約表ID</th>
-                        <th>預約乘客姓名</th>
-                        <th>預約乘客UID</th>
-                        <th>日期</th>
-                        <th>路線</th>
-                        <th>發車時間</th>
-                        <th>上車地點</th>
-                        <th>下車地點</th>
-                        <th>去/回程</th>
-                    </tr>
-                </table>
-            </div> 
-            <div id="maintenance-record"  class="table" style="display: none;">
-                 <table class="table">
-                    <tr>
-                        <th>預約表ID</th>
-                        <th>預約乘客姓名</th>
-                        <th>預約乘客UID</th>
-                        <th>日期</th>
-                        <th>路線</th>
-                        <th>發車時間</th>
-                        <th>上車地點</th>
-                        <th>下車地點</th>
-                        <th>去/回程</th>
-                    </tr>
-                </table>
+            <table id="manage-drivers" class="div-table">
+                <tr>
+                    <th>日期</th>
+                    <th>路線</th>
+                    <th>發車時間</th>
+                    <th>車牌</th>
+                    <th>司機姓名</th>
+                    <th>身分證字號</th>
+                    <th>生日</th>
+                    <th>性別</th>
+                    <th>違規次數</th>
+                    <th>駕照類別</th>
+                    <th>駕照有效期限</th>
+                </tr>
+            </table>
+        </div>
+        <div id="passenger-booking"  class="table" style="display: none;">
+            <div>
+                <select name="route_number">
+                    <option value="">請選擇日期</option>
+                </select>
+                <select name="route_number">
+                    <option value="">請選擇路線</option>
+                </select>
+                <select name="route_number">
+                    <option value="">請選擇發車時間</option>
+                </select>
+                <input type="submit" value="查詢" class="submit">
             </div>
-               
+            <table class="div-table">
+               <tr>
+                    <th>預約表ID</th>
+                    <th>預約乘客姓名</th>
+                    <th>預約乘客UID</th>
+                    <th>日期</th>
+                    <th>路線</th>
+                    <th>發車時間</th>
+                    <th>上車地點</th>
+                    <th>下車地點</th>
+                    <th>去/回程</th>
+                </tr>
+            </table>
+        </div> 
+        <div id="maintenance-record"  class="table" style="display: none;">
+             <table class="div-table">
+                <tr>
+                    
+                </tr>
+            </table>
+        </div>
+           
        
     </section>
 </body>

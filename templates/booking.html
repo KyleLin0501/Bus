@@ -5,9 +5,50 @@
     <title>預約表</title>
     <link rel="stylesheet"  href="../static/css/style.css">
 </head>
-<body>
+<body class="booking">
+    <h1>預約表</h1>
+    <button onclick="location.href='{% url 'index' %}'" class="back">返回首頁</button>
     <form method="post">
-        <button type="submit">Book Appointment</button>
+        <div class="container">
+            <h2 class="left">姓名</h2>
+            <input class="right" type="text" maxlength="20"  style="font-size: 30px"  />
+        </div>
+        <div class="container">
+            <h2 class="left">乘客UID</h2>
+            <input class="right" type="text"  maxlength="20"  style="font-size: 30px"  />
+        </div>
+        <div class="container">
+            <h2 class="left">行駛日期</h2>
+            <input class="right" type="date" style="font-size: 30px"  />
+        </div>
+        <div class="container">
+            <h2 class="left">行駛日期（星期）</h2>
+            <input class="right" type="date" style="font-size: 30px"  />
+        </div>
+        <div class="container">
+            <h2 class="left">路線編號</h2>
+            <input class="right" type="text" style="font-size: 30px"  />
+        </div>
+        <div class="container">
+            <h2 class="left">去/回程</h2>
+            <input class="right" type="text" style="font-size: 30px"  />
+        </div>
+        <div class="container">
+            <h2 class="left">發車時間</h2>
+            <input class="right" type="time" style="font-size: 30px"/>
+        </div>
+        <div class="container">
+            <h2 class="left">上車地點</h2>
+            <input class="right" type="text"  style="font-size: 30px" />
+        </div>
+        <div class="container">
+            <h2 class="left">下車地點</h2>
+            <input class="right" type="text"  style="font-size: 30px" />
+        </div>
+        <div class="container">
+            <input type="submit" class="submit" name="button" id="button"  value="送出">
+            <input type="reset" class="reset" name="button" id="button" value="清除" onclick="location.href='{% url 'booking' %}'">
+        </div>
     </form>
 </body>
 </html>
