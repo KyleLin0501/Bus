@@ -44,7 +44,6 @@
     <table>
         <tr>
             <th>行駛日期</th>
-            <th>到站時間</th>
             <th>出發時間</th>
             <th>行駛星期</th>
             <th>管轄單位</th>
@@ -58,17 +57,15 @@
         {% for bus in HistoricalArrivals_list %}
         <tr>
             <td>{{ bus.driving_date }}</td>
-            <td>{{ bus.arrival_time }}</td>
             <td>{{ bus.departure_time }}</td>
             <td>{{ bus.driving_week }}</td>
             <td>{{ bus.jurisdiction_unit }}</td>
             <td>{{ bus.route_number }}</td>
             <td>{{ bus.outbound_return }}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            
+            <td>{{ bus.starting_point_x }}</td>
+            <td>{{ bus.starting_point_y }}</td>
+            <td>{{ bus.driver_id }}</td>
+            <td>{{ bus.vehicle_license_plate }}</td>
         </tr>
         {% endfor %}
     </table>

@@ -4,51 +4,89 @@
     <meta charset="UTF-8">
     <title>預約表</title>
     <link rel="stylesheet"  href="../static/css/style.css">
+    <script>
+        function showTable(id) {
+            var tables = document.getElementsByClassName('table');
+            for (var i = 0; i < tables.length; i++) {
+                tables[i].style.display = 'none';
+            }
+            document.getElementById(id).style.display = 'table';
+        }
+        function makeActive(id) {
+            var navbarItems = document.getElementsByClassName('navbar-item');
+            for (var i = 0; i < navbarItems.length; i++) {
+                navbarItems[i].classList.remove('active');
+            }
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
 </head>
 <body class="booking">
     <h1>預約表</h1>
     <button onclick="location.href='{% url 'index' %}'" class="back">返回首頁</button>
-    <form method="post">
-        <div class="container">
-            <h2 class="left">姓名</h2>
-            <input class="right" type="text" maxlength="20"  style="font-size: 30px"  />
-        </div>
-        <div class="container">
-            <h2 class="left">乘客UID</h2>
-            <input class="right" type="text"  maxlength="20"  style="font-size: 30px"  />
-        </div>
-        <div class="container">
-            <h2 class="left">行駛日期</h2>
-            <input class="right" type="date" style="font-size: 30px"  />
-        </div>
-        <div class="container">
-            <h2 class="left">行駛日期（星期）</h2>
-            <input class="right" type="date" style="font-size: 30px"  />
-        </div>
-        <div class="container">
-            <h2 class="left">路線編號</h2>
-            <input class="right" type="text" style="font-size: 30px"  />
-        </div>
-        <div class="container">
-            <h2 class="left">去/回程</h2>
-            <input class="right" type="text" style="font-size: 30px"  />
-        </div>
-        <div class="container">
-            <h2 class="left">發車時間</h2>
-            <input class="right" type="time" style="font-size: 30px"/>
-        </div>
-        <div class="container">
-            <h2 class="left">上車地點</h2>
-            <input class="right" type="text"  style="font-size: 30px" />
-        </div>
-        <div class="container">
-            <h2 class="left">下車地點</h2>
-            <input class="right" type="text"  style="font-size: 30px" />
-        </div>
-        <div class="container">
-            <input type="submit" class="submit" name="button" id="button"  value="送出">
-            <input type="reset" class="reset" name="button" id="button" value="清除" onclick="location.href='{% url 'booking' %}'">
-        </div>
-    </form>
+    <div class="navbar">
+        <a id="nav-new" class="navbar-item" href="#1" onclick="showTable('new'); makeActive('nav-new')">新增預約</a>
+        <a id="nav-history" class="navbar-item" href="#2" onclick="showTable('history'); makeActive('nav-history')">查看歷史預約</a>
+    </div>
+    <div id="new" class="table" style="display: none;">
+        <form method="post">
+            <div class="container">
+                <h2 class="left">姓名</h2>
+                <input class="right" type="text" maxlength="20"  style="font-size: 30px"  />
+            </div>
+            <div class="container">
+                <h2 class="left">乘客UID</h2>
+                <input class="right" type="text"  maxlength="20"  style="font-size: 30px"  />
+            </div>
+            <div class="container">
+                <h2 class="left">行駛日期</h2>
+                <input class="right" type="date" style="font-size: 30px"  />
+            </div>
+            <div class="container">
+                <h2 class="left">行駛日期（星期）</h2>
+                <select class="right"  style="font-size: 30px" >
+                    <option value="">請選擇日期</option>
+                    <option value="">Mon</option>
+                    <option value="">Tue</option>
+                    <option value="">Wed</option>
+                    <option value="">Thu</option>
+                    <option value="">Fri</option>
+                    <option value="">Sat</option>
+                    <option value="">Sun</option>
+                </select>
+            </div>
+            <div class="container">
+                <h2 class="left">路線編號</h2>
+                <input class="right" type="text" style="font-size: 30px"  />
+            </div>
+            <div class="container">
+                <h2 class="left">去/回程</h2>
+                 <select class="right"  style="font-size: 30px" >
+                    <option value="">請選擇去/回程</option>
+                    <option value="">去</option>
+                    <option value="">回</option>
+                </select>
+            </div>
+            <div class="container">
+                <h2 class="left">發車時間</h2>
+                <input class="right" type="time" style="font-size: 30px"/>
+            </div>
+            <div class="container">
+                <h2 class="left">上車地點</h2>
+                <input class="right" type="text"  style="font-size: 30px" />
+            </div>
+            <div class="container">
+                <h2 class="left">下車地點</h2>
+                <input class="right" type="text"  style="font-size: 30px" />
+            </div>
+            <div class="container">
+                <input type="submit" class="submit" name="button" id="button"  value="送出">
+                <input type="reset" class="reset" name="button" id="button" value="清除" onclick="location.href='{% url 'booking' %}'">
+            </div>
+        </form>
+    </div>
+    <div id="history" class="table" style="display: none;">
+        
+    </div>
 </body>
 </html>
