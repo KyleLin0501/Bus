@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>站點查詢</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body class="route">
+    <h1>站點查詢</h1>
+    <button onclick="location.href='{% url 'person' %}'" class="back">返回首頁</button>
+    <form action="{% url 'station' %}" method="get" class="horizontal-form">
+        <div class="form-group">
+            <label for="route_number">輸入路線編號</label>
+            <input type="text" id="routeNumber" name="routeNumber">
+        </div>
+        <div class="form-group">
+            <label for="via_station">輸入站名</label>
+            <input type="text" id="stationName" name="stationName">
+        </div>
+        <div class="form-group">
+            <label for="outbound_return">輸入去/返程</label>
+            <select id="outboundReturn" name="outboundReturn" style="width: 170px">
+                <option value="">請選擇去/反程</option>
+                <option value="O">去程</option>
+                <option value="R">返程</option>
+            </select>
+        </div>
+        
+        <input type="submit" value="查詢" class="submit">
+        <input type="reset" value="清除" id="reset" class="reset" onclick="location.href='{% url 'station' %}'">
+    </form>
+
+    <table>
+        <tr>
+            <th>站名</th>
+            <th>馬路名稱</th>
+        </tr>
+        {% for station in stations %}
+        <tr>
+            <td>{{ station.station_name }}</td>
+            <td>{{ station.road_name }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2">沒有找到符合條件的站點</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

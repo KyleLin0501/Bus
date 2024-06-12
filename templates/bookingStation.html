@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>預約表</title>
+    <link rel="stylesheet"  href="../static/css/style.css">
+    <script>
+        function showTable(id) {
+            var tables = document.getElementsByClassName('table');
+            for (var i = 0; i < tables.length; i++) {
+                tables[i].style.display = 'none';
+            }
+            document.getElementById(id).style.display = 'table';
+        }
+        function makeActive(id) {
+            var navbarItems = document.getElementsByClassName('navbar-item');
+            for (var i = 0; i < navbarItems.length; i++) {
+                navbarItems[i].classList.remove('active');
+            }
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+    <style>
+        .div-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .div-table th, .div-table td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+            
+        }
+
+        .div-table th {
+            background-color: #f2f2f2;
+            font-size: 20px;
+        }
+        .div-table td {
+            background-color: #ffffff;
+            font-size: 20px;
+        }
+        
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+        input[type="text"],
+        select {
+            width: 170px;
+            height: 30px;
+        }
+        
+        .button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            background-color: #007B9A;
+            color: white;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body class="booking">
+    <h1>預約表</h1>
+    <button onclick="location.href='{% url 'index' %}'" class="back">返回首頁</button>
+    <div class="navbar">
+        <a id="nav-new" class="navbar-item" href="{% url 'booking' %}" >新增預約</a>
+        <a id="nav-history" class="navbar-item" href="{% url 'bookingHistory' %}" >查看歷史預約</a>
+        <a id="nav-station" class="navbar-item" href="{% url 'bookingStation' %}" style="background-color: #4cae4c">友善站點查詢</a>
+        <a id="nav-bus" class="navbar-item" href="{% url 'bookingBus' %}" >友善班次查詢</a>
+    </div>
+    <div id="history" class="table form-group">
+        <form action="{% url 'bookingStation' %}" method="get" class="horizontal-form form-group" >
+            <div class="=group" style="display: flex; flex-direction: row; align-items: center;">
+                    <div class="form-group">
+                        <label for="stationName">輸入站點名稱</label>
+                        <input type="text" id="stationName" name="stationName">   
+                    </div>
+                    <div class="form-group">
+                        <label for="routeNumber">輸入路線名稱</label>
+                        <input type="text" id="routeNumber" name="routeNumber">   
+                    </div>
+                    <div class="form-group">
+                        <label for="outboundReturn">輸入去/返程</label>
+                         <select id="outboundReturn" name="outboundReturn" style="width: 170px">
+                            <option value="">請選擇去/反程</option>
+                            <option value="O">去程</option>
+                            <option value="R">反程</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="accessibility">輸入是否有無障礙設施</label>
+                         <select id="accessibility" name="accessibility" style="width: 170px">
+                            <option value="">請選擇是/否</option>
+                            <option value="1">有</option>
+                            <option value="0">無</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="waitingAreaSeat">輸入座位數</label>
+                        <input type="text" id="waitingAreaSeat" name="waitingAreaSeat">   
+                    </div>
+                
+                    <input type="submit" value="查詢" class="submit button">
+                    <input type="reset" value="清除" id="reset" class="reset button" onclick="location.href='{% url 'bookingStation' %}'">
+            </div>
+        </form>
+       
+        <table class="div-table">
+            <tr>
+                <th>站點名稱</th>
+                <th>馬路名稱</th>
+            </tr>
+            {% for station in buses %}
+            <tr>
+                <td>{{ station.stationName }}</td>
+                <td>{{ station.roadName }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">沒有找到符合條件的站點</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

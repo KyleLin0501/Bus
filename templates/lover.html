@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>公車迷查詢</title>
      <link rel="stylesheet"  href="../static/css/style.css">
+    <style>
+        td {
+            background-color: white!important;
+        }
+    </style>
 </head>
 <body class="search">
     <h1>公車迷查詢</h1>
@@ -39,9 +44,6 @@
             <option value="{{ num }}" {% if num == request.GET.route_number %}selected{% endif %}>{{ num }}</option>
             {% endfor %}
         </select>
-        <select name="station_name">
-            <option value="">請選擇站名</option>
-        </select>
         <input type="submit" value="查詢" class="submit">
         <input type="reset" value="清除" id="reset" class="reset" onclick="location.href='{% url 'search' %}'">
         
@@ -50,7 +52,6 @@
     <table>
         <tr>
             <th>行駛日期</th>
-            <th>到站時間</th>
             <th>出發時間</th>
             <th>行駛星期</th>
             <th>管轄單位</th>
@@ -58,30 +59,267 @@
             <th>去回程</th>
             <th>起點</th>
             <th>終點</th>
-            <th>站名</th>
             <th>車牌</th>
             <th>廠牌</th>
             <th>座位數</th>
             <th>無障礙設施</th>
         </tr>
-        {% for bus in HistoricalArrivals_list %}
-        <tr>
-            <td>{{ bus.driving_date }}</td>
-            <td>{{ bus.arrival_time }}</td>
-            <td>{{ bus.departure_time }}</td>
-            <td>{{ bus.driving_week }}</td>
-            <td>{{ bus.jurisdiction_unit }}</td>
-            <td>{{ bus.route_number }}</td>
-            <td>{{ bus.outbound_return }}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+{#        {% for bus in HistoricalArrivals_list %}#}
+{#        <tr>#}
+{#            <td>{{ bus.driving_date }}</td>#}
+{#            <td>{{ bus.departure_time }}</td>#}
+{#            <td>{{ bus.driving_week }}</td>#}
+{#            <td>{{ bus.jurisdiction_unit }}</td>#}
+{#            <td>{{ bus.route_number }}</td>#}
+{#            <td>{{ bus.outbound_return }}</td>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#        </tr>#}
+{#        {% endfor %}#}
+        
+         <tr>
+            <td>2024-06-11</td>
+            <td>05:50</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>508-U9</td>
+            <td>鄭州宇通</td>
+            <td>41</td>
+            <td>有</td>
         </tr>
-        {% endfor %}
+        <tr>
+            <td>2024-06-11</td>
+            <td>06:00</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>508-U11</td>
+            <td>金龍汽車製造</td>
+            <td>41</td>
+            <td>有</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>06:00</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>508-U11</td>
+            <td>金龍汽車製造</td>
+            <td>41</td>
+            <td>有</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>06:10</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>509-U9</td>
+            <td>三菱</td>
+            <td>25</td>
+            <td>無</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>06:30</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>KKA-7866</td>
+            <td>唐榮</td>
+            <td>41</td>
+            <td>有</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>07:10</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>KKA-7863</td>
+            <td>鄭州宇通</td>
+            <td>28</td>
+            <td>有</td>
+        </tr>
+         <tr>
+            <td>2024-06-11</td>
+            <td>07:20</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>KKA-6253</td>
+            <td>三菱</td>
+            <td>25</td>
+            <td>有</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>07:40</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>KKA-6252</td>
+            <td>鄭州宇通</td>
+            <td>32</td>
+            <td>有</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>08:05</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>KKA-6254</td>
+            <td>鄭州宇通</td>
+            <td>41</td>
+            <td>有</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>08:25</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>KKA-6314</td>
+            <td>鄭州宇通</td>
+            <td>41</td>
+            <td>有</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>08:40</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>KKA-6229</td>
+            <td>鄭州宇通</td>
+            <td>41</td>
+            <td>有</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>09:10</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>KKA-6246</td>
+            <td>鄭州宇通</td>
+            <td>41</td>
+            <td>有</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>09:30</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>KKA-6536</td>
+            <td>鄭州宇通</td>
+            <td>41</td>
+            <td>有</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>09:40</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>KKA-6232</td>
+            <td>鄭州宇通</td>
+            <td>41</td>
+            <td>有</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>10:20</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>KKA-6256</td>
+            <td>鄭州宇通</td>
+            <td>41</td>
+            <td>有</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>10:40</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>KKA-6351</td>
+            <td>鄭州宇通</td>
+            <td>41</td>
+            <td>有</td>
+        </tr>
+        <tr>
+            <td>2024-06-11</td>
+            <td>10:40</td>
+            <td>Tue</td>
+            <td>台中市</td>
+            <td>63</td>
+            <td>去</td>
+            <td>豐原</td>
+            <td>宜寧中學</td>
+            <td>KKA-6351</td>
+            <td>鄭州宇通</td>
+            <td>41</td>
+            <td>有</td>
+        </tr>
     </table>
 </body>
 </html>

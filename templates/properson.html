@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查詢項目</title>
+    <link rel="stylesheet"  href="../static/css/style.css">
+</head>
+<body class="index">
+    <button onclick="location.href='{% url 'index' %}'" class="back">返回首頁</button>
+    <div>
+        <h1 class="title-style">公車迷專區</h1>
+    </div>
+    <div class="div-style">
+         <form action="{% url 'probus' %}" method="get">
+            <button type="submit">
+                <h2>車輛資訊查詢（經由車牌）</h2>
+                <img src="{% static 'image/search.png' %}" alt="booking" height="150">
+            </button>
+        </form>
+        <form action="{% url 'proschedule' %}" method="get">
+            <button type="submit">
+                <h2>車輛資訊查詢（經由班次)</h2>
+                <img src="{% static 'image/search.png' %}" alt="booking" height="150">
+            </button>
+        </form>
+    </div>
+    <div class="div-style">
+        <form action="{% url 'prohistory' %}" method="get">
+            <button type="submit">
+                <h2>歷史到站查詢</h2>
+                <img src="{% static 'image/booking.png' %}" alt="booking" height="150">
+            </button>
+        </form>
+    </div>
+</body>
+</html>

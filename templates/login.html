@@ -7,39 +7,39 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body class="login">
-    
-    
     <section class="login">
         <h1>乘客登入/註冊</h1>
         <button onclick="location.href='{% url 'index' %}'" class="back">返回首頁</button>
         <div class="container">
-            <div class="form-section" style="float: left">
+            <div class="form-section" style="float: left; width: 45%;">
                 <h2>登入</h2>
-                <form method="post">
+                <form action="{% url 'login' %}" method="post">
                     {% csrf_token %}
+                    <input type="hidden" name="action" value="login">
                     <label for="login-phone">電話:</label>
-                    <input type="text" id="login-phone" name="login-phone">
+                    <input type="text" id="login-phone" name="login-phone" required>
                     <label for="login-uid">乘客UID:</label>
-                    <input type="text" id="login-uid" name="login-uid">
+                    <input type="text" id="login-uid" name="login-uid" required>
                     <input type="submit" value="登入" class="submit">
                 </form>
             </div>
-            <div class="form-section" style="float: right">
+            <div class="form-section" style="float: right; width: 45%;">
                 <h2>註冊</h2>
-                <form method="post">
+                <form method="post" action="{% url 'login' %}">
                     {% csrf_token %}
+                    <input type="hidden" name="action" value="register">
                     <label for="register-uid">乘客UID:</label>
-                    <input type="text" id="register-uid" name="register-uid">
+                    <input type="text" id="register-uid" name="register-uid" required>
                     <label for="register-name">姓名:</label>
-                    <input type="text" id="register-name" name="register-name">
+                    <input type="text" id="register-name" name="register-name" required>
                     <label for="register-gender">性別:</label>
-                    <input type="text" id="register-gender" name="register-gender">
+                    <input type="text" id="register-gender" name="register-gender" required>
                     <label for="register-phone">聯絡電話:</label>
-                    <input type="text" id="register-phone" name="register-phone">
+                    <input type="text" id="register-phone" name="register-phone" required>
                     <label for="register-email">信箱:</label>
-                    <input type="text" id="register-email" name="register-email">
+                    <input type="email" id="register-email" name="register-email" required>
                     <label for="register-disability">身心障礙類別:</label>
-                    <input type="text" id="register-disability" name="register-disability">
+                    <input type="text" id="register-disability" name="register-disability" required>
                     <input type="submit" value="註冊">
                 </form>
             </div>

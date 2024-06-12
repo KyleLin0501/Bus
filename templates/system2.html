@@ -33,15 +33,7 @@
             color: white;
             font-size: 15px;
         }
-         .form-container {
-            display: flex;
-             flex: 1;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-         
-        .form-group {
+         .form-group {
             display: flex;
             flex-direction: column;
             margin-right: 20px;
@@ -53,46 +45,52 @@
     <button onclick="location.href='{% url 'index' %}'" class="back">返回首頁</button>
     <section class="">
         <div class="navbar">
-            <a id="nav-vehicles" class="navbar-item" href="{% url 'system' %}"style="background-color: #4cae4c">管理車輛（維護）</a>
-            <a id="nav-vehicles" class="navbar-item" href="{% url 'system1' %}">管理車輛（未行駛）</a>
-            <a id="nav-drivers" class="navbar-item" href="{% url 'system2' %}" >管理駕駛</a>
+            <a id="nav-vehicles" class="navbar-item" href="{% url 'system' %}">管理車輛（維護）</a>
+            <a id="nav-vehicles" class="navbar-item" href="{% url 'system1' %}" >管理車輛（未行駛）</a>
+            <a id="nav-drivers" class="navbar-item" href="{% url 'system2' %}" style="background-color: #4cae4c" >管理駕駛</a>
             <a id="nav-passenger" class="navbar-item" href="{% url 'system3' %}" >管理預約</a>
         </div>
-        
         <div id="manage-vehicles" class="table form-group" style="display: flex; align-items: center">
-            <form action="{% url 'system' %}" method="get" class="horizontal-form">
+            <form action="{% url 'system2' %}" method="get" class="horizontal-form form-group">
                 <div class="">
                     <div class="form-group">
-                        <label for="travel_date">輸入行駛日期</label>
+                        <label for="drivingDate">輸入行駛日期</label>
                         <input type="date" id="drivingDate" name="drivingDate">   
                     </div>
                     <div class="form-group">
-                        <label for="route_number">輸入路線編號</label>
-                        <input type="text" id="route_number" name="route_number">   
+                        <label for="routeNumber">輸入路線編號</label>
+                        <input type="text" id="routeNumber" name="routeNumber">   
+                    </div>
+                    <div class="form-group">
+                        <label for="departureDate">輸入發車時間</label>
+                        <input type="time" id="departureDate" name="departureDate">   
+                    </div>
+                    <div class="form-group">
+                        <label for="licensePlate">輸入車牌</label>
+                        <input type="text" id="licensePlate" name="licensePlate">   
                     </div>
                     <input type="submit" value="查詢" class="submit">
-                    <input type="reset" value="清除" id="reset" class="reset" onclick="location.href='{% url 'system' %}'">
+                    <input type="reset" value="清除" id="reset" class="reset" onclick="location.href='{% url 'system2' %}'">
                 </div>
             </form>
-            <table class="div-table ">
+            
+            <table class="div-table">
                 <tr>
-                    <th>車牌</th>
-                    <th>維護日期</th>
-                    <th>保養廠</th>
-                    <th>保養等級</th>
-                    <th>保養人員</th>
+                    <th>司機身分證字號</th>
+                    <th>司機生日</th>
+                    <th>身分證字號</th>
+                    <th>司機性別</th>
+                    <th>司機違規次數</th>
+                    <th>司機駕照類別</th>
                 </tr>
-                {% for bus in buses %}
+                {% for driver in drivers %}
                 <tr>
-                    <td>{{ bus.license }}</td>
-                    <td>{{ bus.maintenanceDate }}</td>
-                    <td>{{ bus.shop }}</td>
-                    <td>{{ bus.maintenanceLevel }}</td>
-                    <td>{{ bus.personnel }}</td>    
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="6">沒有找到符合條件的路線</td>   
+                    <td>{{ driver.driverId }}</td>
+                    <td>{{ driver.birthDay }}</td>
+                    <td>{{ driver.gender }}</td>
+                    <td>{{ driver.violationRecord }}</td>
+                    <td>{{ driver.driverLicense }}</td>
+                    <td>{{ driver.driverLicenseEd }}</td>
                 </tr>
                 {% endfor %}
             </table>

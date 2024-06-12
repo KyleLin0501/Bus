@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>班表查詢</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body class="route">
+    <h1>班表查詢</h1>
+    <button onclick="location.href='{% url 'person' %}'" class="back">返回首頁</button>
+    <form action="{% url 'schedule' %}" method="get" class="horizontal-form">
+        <div class="form-group">
+            <label for="route_number">輸入路線編號</label>
+            <input type="text" id="route_number" name="route_number">
+        </div>
+        <div class="form-group">
+            <label for="driving_week">輸入星期</label>
+            <select id="driving_week" name="driving_week">
+                <option value="">請選擇星期</option>
+                <option value="Mon">星期一</option>
+                <option value="Tue">星期二</option>
+                <option value="Wed">星期三</option>
+                <option value="Thu">星期四</option>
+                <option value="Fri">星期五</option>
+                <option value="Sat">星期六</option>
+                <option value="Sun">星期日</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="outbound_return">輸入去/返程</label>
+            <select id="outbound_return" name="outbound_return">
+                <option value="">請選擇去/返程</option>
+                <option value="O">去程</option>
+                <option value="R">返程</option>
+            </select>
+        </div>
+        
+        <input type="submit" value="查詢" class="submit">
+        <input type="reset" value="清除" id="reset" class="reset" onclick="location.href='{% url 'schedule' %}'">
+    </form>
+
+    <table>
+        <tr>
+            <th>發車時間</th>
+            <th>行駛日期（星期）</th>
+            <th>管轄單位</th>
+            <th>路線編號</th>
+            <th>去/返程</th>
+        </tr>
+        {% for frequency in actual_frequencies %}
+        <tr>
+            <td>{{ frequency.departureTime }}</td>
+            <td>{{ frequency.drivingWeek }}</td>
+            <td>{{ frequency.jurisdictionUnit }}</td>
+            <td>{{ frequency.routeNumber }}</td>
+            <td>{{ frequency.outboundReturn }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">沒有找到符合條件的班表</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

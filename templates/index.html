@@ -14,7 +14,7 @@
         <h1 class="title-style">公路大眾運輸資訊系統</h1>
     </div>
     <div class="div-style">
-         <form action="{% url 'search' %}" method="get">
+         <form action="{% url 'person' %}" method="get">
             <button type="submit">
                 <h2>民眾查詢</h2>
                 <img src="{% static 'image/search.png' %}" alt="booking" height="150">
@@ -28,9 +28,9 @@
         </form>
     </div>
     <div class="div-style">
-        <form action="{% url 'lover' %}" method="get">
+        <form action="{% url 'properson' %}" method="get">
             <button type="submit">
-                <h2>公車迷</h2>
+                <h2>公車迷專區</h2>
                 <img src="{% static 'image/driver.png' %}" alt="driver" height="150">
             </button>
         </form>

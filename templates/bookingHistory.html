@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>預約表</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="booking">
+    <h1>歷史預約</h1>
+    <button onclick="location.href='{% url 'index' %}'" class="back">返回首頁</button>
+    <div class="navbar">
+        <a id="nav-new" class="navbar-item" href="{% url 'booking' %}">新增預約</a>
+        <a id="nav-history" class="navbar-item" href="{% url 'bookingHistory' %}" style="background-color: #4cae4c">查看歷史預約</a>
+        <a id="nav-station" class="navbar-item" href="{% url 'bookingStation' %}">友善站點查詢</a>
+        <a id="nav-bus" class="navbar-item" href="{% url 'bookingBus' %}">友善班次查詢</a>
+    </div>
+    <div id="history" class="table">
+        <table class="div-table">
+            <tr>
+                <th>預約編號</th>
+                <th>行駛日期</th>
+                <th>行駛日期（星期）</th>
+                <th>路線編號</th>
+                <th>去/回程</th>
+                <th>發車時間</th>
+                <th>上車地點</th>
+                <th>下車地點</th>
+                <th>有無特殊需求</th>
+                <th>修改</th>
+            </tr>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.appointment_form_id }}</td>
+                <td>{{ appointment.driving_date }}</td>
+                <td>{{ appointment.driving_week }}</td>
+                <td>{{ appointment.route_number }}</td>
+                <td>{{ appointment.outbound_return }}</td>
+                <td>{{ appointment.departure_time }}</td>
+                <td>{{ appointment.pick_up_location_x }}, {{ appointment.pick_up_location_y }}</td>
+                <td>{{ appointment.drop_off_location_x }}, {{ appointment.drop_off_location_y }}</td>
+                <td>{{ appointment.special_needs }}</td>
+                <td><a href="{% url 'bookingHistory' %}">修改</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

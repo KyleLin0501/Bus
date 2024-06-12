@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>刪除預約</title>
+</head>
+<body>
+    <h1>刪除預約</h1>
+    <p>您確定要刪除這個預約嗎？</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">確認刪除</button>
+        <a href="{% url 'bookingHistory' %}">取消</a>
+    </form>
+</body>
+</html>
